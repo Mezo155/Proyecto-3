@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Titanic",
+    "director": "James Cameron",
+    "year": 1997,
+    "genre": ["Romance", "Drama"],
+    "synopsis": "A young man and woman from different social backgrounds fall in love aboard the ill-fated maiden voyage of the RMS Titanic.",
+    "actors": ["Leonardo DiCaprio", "Kate Winslet", "Billy Zane"],
+    "duration_minutes": 195,
+    "rating": 7.8
+  },
+  {
+    "title": "Jurassic Park",
+    "director": "Steven Spielberg",
+    "year": 1993,
+    "genre": ["Science Fiction", "Adventure"],
+    "synopsis": "An amusement park featuring cloned dinosaurs turns into a nightmare when the dinosaurs break free from their enclosures.",
+    "actors": ["Sam Neill", "Laura Dern", "Jeff Goldblum"],
+    "duration_minutes": 127,
+    "rating": 8.1
+  },
+  {
+    "title": "The Shawshank Redemption",
+    "director": "Frank Darabont",
+    "year": 1994,
+    "genre": ["Drama", "Crime"],
+    "synopsis": "A banker is imprisoned for a crime he didn't commit and forms a unique friendship with a fellow inmate as they plan their escape.",
+    "actors": ["Tim Robbins", "Morgan Freeman", "Bob Gunton"],
+    "duration_minutes": 142,
+    "rating": 9.3
+  }
+]
