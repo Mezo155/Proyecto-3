@@ -1,12 +1,14 @@
 const creatorError = require("http-errors");
 const jwt = require("jsonwebtoken");
+const User = require("../models/User.model")
 
 module.exports.create = (req, res, next) => {
-  const { email, password, username } = req.body;
+  const {userName, email, password} = req.body;
 
-  User.create({ email, password, username })
+  User.create({userName, email, password})
     .then((userCreated) => {
-      res.status(204).json(userCreated);
+      console.log(userCreated)
+      res.status(201).json(userCreated);
     })
     .catch(next);
 };
