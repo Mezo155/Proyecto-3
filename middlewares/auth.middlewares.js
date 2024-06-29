@@ -7,7 +7,7 @@ module.exports.isAuthenticated = (req, res, next) => {
     if(!authorization){
         return next(createError(401, "Authorization header was not provided"));
     }
-    const [schema, token] = authorizatioon.split(" ");
+    const [schema, token] = authorization.split(" ");
 
     if(schema !== "Bearer"){
         return next(createError(401, "Authorization schema is not supported"));
