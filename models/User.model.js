@@ -38,6 +38,13 @@ const UserSchema = new mongoose.Schema(
     }
 );
 
+userSchema.virtual("likes", { //Se define un campo virtual "registros" en el userSchema
+  ref: "Like",
+  foreignField: "userId", //En el modelo registro se va a usar el campo user para establecer relacion con el modelo Like
+  localField: "_id", //En el modelo usuario que se va a usar para establecer relacion con el modelo Like
+  justOne: false, //Con false, el mismo usuario se puede registrar en varios eventos
+});
+
 UserSchema.pre("save", function (next) {
     if (this.isModified("password")) {
       bcrypt
