@@ -7,7 +7,6 @@ module.exports.create = (req, res, next) => {
 
   User.create({userName, email, password})
     .then((userCreated) => {
-      console.log(userCreated)
       res.status(201).json(userCreated);
     })
     .catch(next);
