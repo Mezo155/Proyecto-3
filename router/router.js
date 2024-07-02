@@ -12,8 +12,8 @@ router.get("/users/me", authMiddlewares.isAuthenticated, userController.getCurre
 router.get("/users/:id", userController.getUser)
 
 //like
-router.post("/films/:id", authMiddlewares.isAuthenticated, likeController.doLike )
-
+router.post("/films/:externalItemId/like", authMiddlewares.isAuthenticated, likeController.doLike )
+router.get("/likes/me", authMiddlewares.isAuthenticated, likeController.getMyLikes)
 //auth
 router.post("/login", authController.login);
 

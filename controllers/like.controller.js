@@ -1,10 +1,11 @@
 const Like = require('../models/Like.model');
 
 module.exports.doLike = (req, res, next) => {
-  const { userId, externalItemId } = req.body;
-
+  const { externalItemId } = req.params;
+  const { currentUserId} = req;
+  console.log("*******", currentUserId, externalItemId)
   // Verificar si el usuario ya ha dado "like" a este ítem
-  Like.findOne({ userId, externalItemId })
+  Like.findOne({ currentUserId, externalItemId })
     .then((existingLike) => {
       if (existingLike) {
         // Si ya existe un "like", eliminarlo
@@ -13,10 +14,18 @@ module.exports.doLike = (req, res, next) => {
           .catch(err => next(err)); // Manejo de errores
       } else {
         // Si no existe un "like", crear uno nuevo
-        return Like.create({ userId, externalItemId })
+        return Like.create({ userId: currentUserId, externalItemId })
           .then(newLike => res.status(201).json(newLike))
           .catch(err => next(err)); // Manejo de errores
       }
     })
     .catch(err => next(err)); // Manejo de errores
 };
+
+module.exports.getMyLikes = (req, res, next) => {
+  Like.find({userId: req.currentUserId})
+  .then((myLikes) => {
+    res.json(myLikes)
+  })
+  .catch(err => next(err))
+}
