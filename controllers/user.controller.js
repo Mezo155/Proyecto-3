@@ -12,7 +12,7 @@ module.exports.create = (req, res, next) => {
     .catch(next);
 };
 
-module.exports.list = (req, res, next) => {
+/* module.exports.list = (req, res, next) => {
   User.find()
     .then((users) => res.json(users))
     .catch(next);
@@ -28,7 +28,7 @@ module.exports.getUser = (req, res, next) => {
       }
     })
     .catch(next);
-};
+}; */
 
 module.exports.getCurrentUser = (req, res, next) => {
   User.findById(req.currentUserId)
