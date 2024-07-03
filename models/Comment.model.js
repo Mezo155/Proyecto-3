@@ -13,17 +13,19 @@ const commentSchema = new mongoose.Schema(
             required: true // Ahora es requerido
         },
 
+        title: {
+            type: String,
+            required: true,
+            minLength: 10
+        },
+
         comment: {
             type: String,
             required: true,
             minLength: 10
         },
 
-        title: {
-            type: String,
-            required: true,
-            minLength: 10
-        }
+       
     }, 
     {
         timestamps: true

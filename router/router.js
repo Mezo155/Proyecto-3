@@ -21,5 +21,6 @@ router.post("/login", authController.login);
 
 //comment
 router.post("/films/:filmId/comment", authMiddlewares.isAuthenticated, commentController.doComment)
+router.get("/films/:filmId/comment", authMiddlewares.isAuthenticated, commentController.getCommentsForFilm)
 
 module.exports = router
