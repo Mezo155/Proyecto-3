@@ -5,7 +5,7 @@ module.exports.doLike = (req, res, next) => {
   const { currentUserId} = req;
   console.log("*******", currentUserId, externalItemId)
   // Verificar si el usuario ya ha dado "like" a este ítem
-  Like.findOne({ currentUserId, externalItemId })
+  Like.findOne({ userId: currentUserId, externalItemId })
     .then((existingLike) => {
       if (existingLike) {
         // Si ya existe un "like", eliminarlo
@@ -15,7 +15,7 @@ module.exports.doLike = (req, res, next) => {
       } else {
         // Si no existe un "like", crear uno nuevo
         return Like.create({ userId: currentUserId, externalItemId })
-          .then(newLike => res.status(201).json(newLike))
+          .then(newLike => res.status(201).json({newLike, message: 'Like added'}))
           .catch(err => next(err)); // Manejo de errores
       }
     })
@@ -25,7 +25,7 @@ module.exports.doLike = (req, res, next) => {
 module.exports.getMyLikes = (req, res, next) => {
   Like.find({userId: req.currentUserId})
   .then((myLikes) => {
-    res.json(myLikes)
+    res.status(200).json(myLikes)
   })
   .catch(err => next(err))
 }
