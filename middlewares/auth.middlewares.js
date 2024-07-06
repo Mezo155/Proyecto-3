@@ -21,7 +21,11 @@ module.exports.isAuthenticated = (req, res, next) => {
 
     jwt.verify (token, secret, (err, decodedToken) =>{
         if(err){
-            return next(err);
+            if (err instanceof jwt.TokenExpiredError) {
+                return next(createError(401, 'Token expired'))
+            } else {
+                return next(err);
+            }
         }
         req.currentUserId = decodedToken.id;
         next()

@@ -26,6 +26,11 @@ const UserSchema = new mongoose.Schema(
             required: true,
             minlength: [3, "invalid length"],
         },
+
+        imgUrl: {
+          type: String,
+          default: 'https://res.cloudinary.com/dqtcw4sme/image/upload/f_auto,q_auto/vx6fggezedsqidnide34'
+        }
     },
     {
         timestamps: true,

@@ -1,4 +1,5 @@
 const router = require("express").Router()
+const multer = require("../config/storage.config")
 //const filmsController = require("../controllers/films.controller")
 const authController = require("../controllers/auth.controller")
 const likeController = require("../controllers/like.controller")
@@ -7,7 +8,7 @@ const authMiddlewares = require("../middlewares/auth.middlewares")
 const commentController = require("../controllers/comment.controller")
 
 //users
-router.post("/users", userController.create)
+router.post("/users", multer.single("imgUrl"), userController.create)
 /* router.get("/users", userController.list) */
 router.get("/users/me", authMiddlewares.isAuthenticated, userController.getCurrentUser)
 /* router.get("/users/:id", userController.getUser) */

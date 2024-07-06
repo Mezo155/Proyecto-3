@@ -4,8 +4,9 @@ const User = require("../models/User.model")
 
 module.exports.create = (req, res, next) => {
   const {userName, email, password} = req.body;
+  const imgUrl = req.file ? req.file.path : null;
 
-  User.create({userName, email, password})
+  User.create({userName, email, password, imgUrl})
     .then((userCreated) => {
       res.status(201).json(userCreated);
     })
