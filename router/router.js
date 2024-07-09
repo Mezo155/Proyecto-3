@@ -9,8 +9,8 @@ const commentController = require("../controllers/comment.controller")
 
 //users
 router.post("/users", multer.single("imgUrl"), userController.create)
-router.put("/users/:id", authMiddlewares.isAuthenticated, multer.single("imgUrl"), userController.update);
 router.get("/users/me", authMiddlewares.isAuthenticated, userController.getCurrentUser)
+router.put("/users/me", authMiddlewares.isAuthenticated, multer.single("imgUrl"), userController.update);
 /* router.get("/users/:id", userController.getUser) */
 
 //like

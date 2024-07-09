@@ -17,7 +17,7 @@ module.exports.create = (req, res, next) => {
         <p>Aquí tienes una vista rápida de tu perfil:</p>
         <img src="${imgUrl}" alt="Imagen de Perfil" style="max-width: 200px;"/>
       `;
-
+      return res.status(201).json(userCreated);//esto hay que borrarlo para que funcione
     return sendEmail(email, subject, html)
       .then(() => {
         res.status(201).json(userCreated);
@@ -40,16 +40,16 @@ module.exports.getCurrentUser = (req, res, next) => {
 };
 
 module.exports.update = (req, res, next) => {
-  const { userName, password } = req.body;
+  console.log(req.body)
+  const { userName } = req.body;
   const imgUrl = req.file ? req.file.path : null;
 
   const updateData = {};
 
   if (userName) updateData.userName = userName;
-  if (password) updateData.password = password;
   if (imgUrl) updateData.imgUrl = imgUrl;
 
-  User.findByIdAndUpdate(req.params.id, updateData, { new: true, runValidators: true })
+  User.findByIdAndUpdate(req.currentUserId, updateData, { new: true, runValidators: true })
     .then(updatedUser => {
       if (!updatedUser) {
         return next(createError(404, "User not found"));
