@@ -17,7 +17,7 @@ module.exports.create = (req, res, next) => {
         <p>Aquí tienes una vista rápida de tu perfil:</p>
         <img src="${imgUrl}" alt="Imagen de Perfil" style="max-width: 200px;"/>
       `;
-      return res.status(201).json(userCreated);//esto hay que borrarlo para que funcione
+      
     return sendEmail(email, subject, html)
       .then(() => {
         res.status(201).json(userCreated);
