@@ -6,6 +6,7 @@ const likeController = require("../controllers/like.controller")
 const userController = require("../controllers/user.controller")
 const authMiddlewares = require("../middlewares/auth.middlewares")
 const commentController = require("../controllers/comment.controller")
+const watchListController = require("../controllers/watchList.controller")
 
 //users
 router.post("/users", multer.single("imgUrl"), userController.create)
@@ -23,5 +24,9 @@ router.post("/login", authController.login);
 //comment
 router.post("/films/:filmId/comment", authMiddlewares.isAuthenticated, commentController.doComment)
 router.get("/films/:filmId/comment", authMiddlewares.isAuthenticated, commentController.getCommentsForFilm)
+
+//watchList
+router.post("/films/:externalItemId/watchList", authMiddlewares.isAuthenticated, watchListController.addOrRemoveFromWatchlist )
+router.get("/watchList/me", authMiddlewares.isAuthenticated, watchListController.getMyWatchlist)
 
 module.exports = router
