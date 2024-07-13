@@ -15,7 +15,7 @@ module.exports.getCommentsForFilm = (req, res, next) => {
     const {filmId} = req.params
 
 Comment.find({ filmId })
-  .populate('user', 'userName')  // Poblamos el campo `user` para obtener el nombre del usuario
+  .populate('user', 'userName imgUrl')  // Poblamos el campo `user` para obtener el nombre del usuario
   .then(comments => {
     res.json(comments);
   })
